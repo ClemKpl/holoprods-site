@@ -321,6 +321,13 @@ h6 {
     padding-left: 1.5rem;
 }
 
+@media (max-width: 900px) {
+    .lang-selector {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+
 .lang-btn {
     background: none;
     border: none;
