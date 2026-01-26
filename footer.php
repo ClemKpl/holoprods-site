@@ -34,7 +34,7 @@
     if (closeBtn && mobileNav) {
         closeBtn.addEventListener('click', closeMenu);
     }
-    
+
     // Close on overlay click
     if (menuOverlay) {
         menuOverlay.addEventListener('click', closeMenu);
@@ -45,21 +45,29 @@
     dropdownTriggers.forEach(trigger => {
         trigger.addEventListener('click', (e) => {
             // Only on mobile (check window width or if nav is fixed)
+            // Only on mobile and if link is not real
             if (window.innerWidth <= 1250) {
-                e.preventDefault();
-                const parent = trigger.parentElement;
-                parent.classList.toggle('active');
+                const href = trigger.getAttribute('href');
+                if (!href || href === '#' || href === '') {
+                    e.preventDefault();
+                    const parent = trigger.parentElement;
+                    parent.classList.toggle('active');
+                }
+                // If href exists (e.g. solutions.php), we let it navigate.
+                // Note: This disables the submenu toggle opening on click. 
+                // The submenu will only be accessible if the user adds a separate toggle button or via the parent page.
             }
         });
     });
 </script>
-    <!-- Floating Contact Button (Mobile Only) -->
-    <a href="contact.php" class="floating-contact-btn" aria-label="Nous contacter">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-    </a>
+<!-- Floating Contact Button (Mobile Only) -->
+<a href="contact.php" class="floating-contact-btn" aria-label="Nous contacter">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+    </svg>
+</a>
 </body>
 
 </html>
