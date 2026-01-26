@@ -419,6 +419,18 @@ h6 {
     position: relative;
 }
 
+/* Disable parallax on mobile to fix jitter/zoom */
+@media (max-width: 900px) {
+    .hero {
+        background-attachment: scroll;
+        height: auto;
+        /* Allow content to dictate height on mobile if needed, or keep 100vh? */
+        /* height 100vh causes issue with URL bar resize too, let's just fix attachment first */
+        min-height: 100dvh;
+        /* dynamic height unit for mobile browsers */
+    }
+}
+
 .hero::after {
     content: '';
     position: absolute;
