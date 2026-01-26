@@ -1,5 +1,6 @@
 <?php
 require_once 'lang/init.php';
+$body_class = 'white-bg';
 $page_title = "Offre - Holoprods";
 $page_subtitle = $lang['offer'];
 require_once 'header.php';

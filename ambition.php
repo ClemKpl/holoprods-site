@@ -1,5 +1,6 @@
 <?php
 require_once 'lang/init.php';
+$body_class = 'white-bg';
 $page_subtitle = $lang['ambition'];
 include 'header.php';
 ?>

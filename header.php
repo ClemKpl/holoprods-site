@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="<?php echo isset($body_class) ? $body_class : ''; ?>">
 
     <!-- Header -->
     <header class="site-header" id="main-header">

@@ -29,6 +29,17 @@ body {
     overflow: hidden;
 }
 
+/* White Page Theme (for subpages) */
+body.white-bg {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+body.white-bg main {
+    min-height: 150vh;
+    /* Force scrollable height */
+}
+
 h1,
 h2,
 h3,
