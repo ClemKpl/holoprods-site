@@ -1,0 +1,849 @@
+/* Modern Premium Reset & Base Styles */
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #333;
+    --accent-color: #00ff88;
+    --secondary-accent: #064EAF;
+    --header-bg-top: #ffffff;
+    --header-text-top: #333333;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* Header Styles */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-bar {
+    width: 100%;
+    background-color: var(--header-bg-top);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Scrolled State ("Bubble") */
+.site-header.scrolled {
+    top: 20px;
+}
+
+.site-header.scrolled .glass-bar {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 2rem;
+}
+
+/* Brand & Logo */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #333;
+    letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+}
+
+/* Main Navigation */
+.main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Hide icons on desktop, but show them in dropdowns */
+@media (min-width: 1251px) {
+    .nav-icon {
+        display: none;
+    }
+
+    .dropdown-menu .nav-icon {
+        display: inline-block;
+    }
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+    color: var(--secondary-accent);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hide Navigation on Scroll (Desktop Only) */
+@media (min-width: 1251px) {
+    .site-header.scrolled .main-nav {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        flex: 0;
+        /* Collapse space if needed, though opacity is cleaner for transition */
+        /* If flex:0 causes layout jumps, keep flex:1 but use max-width/opacity. 
+           Let's try opacity first. But flex:0 allows brand/actions to come closer? 
+           The user wants "space-between" probably. 
+           Let's just hide it. */
+        display: none;
+        /* Using display:none invalidates transition interaction, but ensures layout collapses. 
+           If user wants animation, we need max-width/opacity. 
+           Given "ne soit pas visible", distinct disappearance is fine. */
+    }
+}
+
+/* Responsive adjustment for small desktops */
+@media (min-width: 901px) and (max-width: 1100px) {
+    .nav-list {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+}
+
+/* Dropdown Menu */
+.nav-item-dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: 220px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(6, 78, 175, 0.1);
+    /* Secondary accent light */
+    color: var(--secondary-accent);
+}
+
+/* Dropdown Hover State (Desktop) */
+@media (min-width: 901px) {
+    .nav-item-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.phone-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.phone-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.phone-link:hover {
+    color: #333;
+}
+
+.phone-link:hover::after {
+    width: 100%;
+}
+
+/* Button Contact Dark */
+.btn-contact-dark {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    /* Darker styling as implied by name */
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    gap: 8px;
+}
+
+.btn-contact-dark:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Lang Selector */
+.lang-selector {
+    position: relative;
+    border-left: 1px solid #eee;
+    padding-left: 1.5rem;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: #333;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.lang-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.lang-flag {
+    width: 20px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    display: none;
+    /* Hidden by default */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 120px;
+}
+
+.lang-selector:hover .lang-dropdown {
+    display: flex;
+    flex-direction: column;
+    /*gap: 4px;*/
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-align: left;
+}
+
+.lang-option:hover {
+    background: #f5f5f5;
+}
+
+.lang-option.active {
+    background: #f0f0f0;
+    color: var(--secondary-accent);
+}
+
+.lang-flag-sm {
+    width: 16px;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: url('assets/Section-Hero-Index.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #333;
+    padding-top: 80px;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, #ffffff);
+    pointer-events: none;
+}
+
+.hero .container {
+    max-width: 1200px;
+    padding: 0 3rem;
+    color: #fff;
+}
+
+/* Animation Keyframes: Reveal from Left */
+@keyframes revealText {
+    from {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
+
+/* Animation Keyframes: Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    font-weight: 800;
+    /* Animation: Reveal */
+    opacity: 0;
+    animation: revealText 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.9);
+    /* Animation: Fade In Up */
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.btn-simulation {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    /* Animation */
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.btn-simulation:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Mobile Menu Button (Hidden on Desktop) */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    padding: 4px;
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   MENU OVERLAY (Backdrop)
+   ========================================= */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* Slightly darker */
+    backdrop-filter: blur(8px);
+    /* Stronger blur */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* Crucial */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /* Allows clicking to close */
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    /* Crucial */
+}
+
+/* =========================================
+   FLOATING HEADER BUTTON (Hidden by default)
+   ========================================= */
+.floating-contact-btn {
+    display: none;
+}
+
+/* =========================================
+   SIDEBAR NAVIGATION (Global Styles)
+   ========================================= */
+/* Mobile Navigation Container */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-left: 4rem;
+    padding-right: 2rem;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    overflow-y: auto;
+}
+
+.mobile-nav.active {
+    transform: translateX(0);
+}
+
+/* Nav List inside Mobile Nav */
+.mobile-nav .nav-list {
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    align-items: flex-start;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Links */
+.mobile-nav .nav-link {
+    font-size: 1.25rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    /* Only span text width */
+    padding: 0.8rem 0;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav .nav-link:hover {
+    color: var(--secondary-accent);
+}
+
+/* Dropdown - Tree Structure */
+.mobile-nav .nav-item-dropdown {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+/* Vertical line */
+/* Vertical line removed as requested */
+/*
+.mobile-nav .nav-item-dropdown::before {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    left: 0.8rem;
+    bottom: 1.5rem;
+    width: 2px;
+    background: rgba(6, 78, 175, 0.2);
+}
+*/
+
+/* Force override of generic desktop hover styles */
+.mobile-nav .nav-item-dropdown:hover .dropdown-menu {
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    /* Reset glass/border effects */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+}
+
+.mobile-nav .dropdown-menu {
+    position: static;
+    width: 100%;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    /* Reset glass/border effects globally */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+
+    padding-left: 2.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.mobile-nav .dropdown-menu li {
+    position: relative;
+}
+
+/* Curved line */
+.mobile-nav .dropdown-menu li::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: -1.7rem;
+    width: 1rem;
+    height: 1.5rem;
+    border-bottom: 2px solid rgba(6, 78, 175, 0.2);
+    border-left: 2px solid rgba(6, 78, 175, 0.2);
+    border-bottom-left-radius: 12px;
+}
+
+.mobile-nav .dropdown-menu li a {
+    font-size: 1rem;
+    color: #555;
+    padding: 0.8rem 1.2rem;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    display: block;
+    text-decoration: none;
+    transition: none;
+}
+
+/* Hover effect only on strict mobile if needed, or removed for tablet/pc */
+@media (max-width: 900px) {
+    .mobile-nav .dropdown-menu li a:hover {
+        background: rgba(6, 78, 175, 0.1);
+        color: var(--secondary-accent);
+    }
+}
+
+/* Ensure no hover background on larger screens */
+@media (min-width: 901px) {
+    .mobile-nav .dropdown-menu li a:hover {
+        background: transparent;
+        color: var(--secondary-accent);
+        /* Keep text color change? User said "enleve le hover", might mean the background box specifically */
+    }
+}
+
+/* Responsive Design */
+/* =========================================
+   TABLET & MOBILE COMMON (Trigger Burger)
+   Range: < 1250px
+   ========================================= */
+/* =========================================
+   TABLET & MOBILE COMMON (Trigger Burger)
+   Range: < 1250px
+   ========================================= */
+@media (max-width: 1250px) {
+    .glass-bar {
+        padding: 1rem 1.5rem;
+    }
+
+    .site-header.scrolled .glass-bar {
+        width: 95%;
+    }
+
+    /* Show Burger */
+    .mobile-menu-btn {
+        display: block;
+        z-index: 2000;
+    }
+
+    /* Hide Main Desktop Nav on Mobile/Tablet */
+    .main-nav {
+        display: none !important;
+    }
+
+
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+/* =========================================
+   TABLET & DESKTOP SIDEBAR (> 900px)
+   ========================================= */
+@media (min-width: 901px) {
+    .mobile-nav {
+        width: 380px;
+        /* Specific width for tablet/desktop sidebar */
+        border-radius: 30px 0 0 30px;
+    }
+}
+
+/* =========================================
+   DESKTOP SCROLL BEHAVIOR (> 1250px)
+   ========================================= */
+@media (min-width: 1251px) {
+
+    /* Show Burger on Scroll */
+    .site-header.scrolled .mobile-menu-btn {
+        display: block;
+    }
+
+    /* Hide Main Nav on Scroll */
+    .site-header.scrolled .main-nav {
+        display: none;
+    }
+}
+
+/* =========================================
+   STRICTLY MOBILE (< 900px)
+   ========================================= */
+@media (max-width: 900px) {
+
+    /* Full Width Menu on Mobile */
+    .mobile-nav {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        padding-top: 20px;
+        padding-left: 2rem;
+        padding-right: 1.5rem;
+    }
+
+    .header-actions {
+        gap: 1rem;
+    }
+
+    .phone-link {
+        display: none;
+    }
+
+    /* Hide header contact button completely on mobile */
+    .btn-contact-dark {
+        display: none !important;
+    }
+
+    /* Floating Contact Button (Mobile Only) */
+    .floating-contact-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        /* Dark Glass Effect */
+        background: rgba(20, 20, 20, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        /* White icon */
+        border-radius: 50%;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        /* Softer shadow */
+        z-index: 9990;
+        /* High index but below mobile-nav (9999) */
+        text-decoration: none;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .floating-contact-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .floating-contact-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Hide Main Nav on intermediate simple resize if not handled by media query properly, 
+   but here we handle it by transform off-screen on mobile */
