@@ -725,6 +725,17 @@ html {
         z-index: 100;
         /* Much higher to ensure it's above model */
         margin-bottom: 0;
+
+        /* Initial state - hidden below */
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* Entrance animation - fade up from bottom */
+    .step-1 .showcase-text.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .step-1 .showcase-text h2 {
@@ -736,21 +747,20 @@ html {
         font-size: 1rem;
     }
 
-    /* Model positioned bottom-left, overlapping with text area */
+    /* Model positioned bottom-center on mobile */
     .model-wrapper {
         position: absolute !important;
         bottom: 25vh;
         /* Raised higher for better positioning */
-        left: 0;
-        /* Left side to avoid thumb navigation zone */
+        left: 50% !important;
+        /* Centered horizontally */
         right: auto !important;
-        /* Override any right positioning */
+        transform: translateX(-50%) !important;
+        /* Center the model */
         width: 80vw !important;
         /* Increased from 70vw */
         height: 80vw !important;
         max-width: none;
-        transform: translate(0, 0) !important;
-        /* Reset desktop transform */
         z-index: 10;
         /* Below text so text appears on top of model */
     }
@@ -767,11 +777,12 @@ html {
         display: none;
     }
 
-    /* Ensure text is always visible (no fade animations on mobile) */
+    /* Remove individual h2/p animations on mobile - animate whole block instead */
     .step-1 .showcase-text h2,
     .step-1 .showcase-text p {
         opacity: 1 !important;
-        transform: translateY(0) !important;
+        transform: none !important;
+        transition: none !important;
     }
 }
 
