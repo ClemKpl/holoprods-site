@@ -799,8 +799,8 @@ html {
         max-width: 500px;
         text-align: left;
         z-index: 100;
-        margin-bottom: 0;
-        /* Reduced from 2rem to 0 to minimize gap */
+        margin-bottom: 1.5rem;
+        /* Restored a small margin as requested */
 
         /* Initial state - hidden below */
         opacity: 0;
