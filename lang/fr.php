@@ -39,5 +39,6 @@ $lang = array(
 
     'step3_title' => "Solution Clé en Main",
     'step3_text' => "Chez Holoprods, nous avons aussi la casquette d’éditeur de logiciels pour préparer au mieux l’expérience qu’on met en place pour nos clients.",
+    'interact_tooltip' => "Interagissez avec le modèle",
 );
 ?>

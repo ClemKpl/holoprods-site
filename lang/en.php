@@ -39,5 +39,6 @@ $lang = array(
 
     'step3_title' => "Turnkey Solution",
     'step3_text' => "At Holoprods, we also act as software publishers to craft the perfect experience for our clients.",
+    'interact_tooltip' => "Interact with the model",
 );
 ?>

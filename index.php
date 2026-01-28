@@ -21,7 +21,34 @@
                 <model-viewer src="assets/v2reexportpaslourd.glb" shadow-intensity="1" camera-orbit="215deg 80deg 105%"
                     auto-rotate camera-controls disable-zoom alt="Borne Holoprods">
                 </model-viewer>
+
+                <!-- Interaction Tooltip -->
+                <div class="model-tooltip" id="modelTooltip">
+                    <p><?php echo $lang['interact_tooltip']; ?></p>
+                </div>
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const modelViewer = document.querySelector('model-viewer');
+                    const tooltip = document.getElementById('modelTooltip');
+
+                    if (modelViewer && tooltip) {
+                        const hideTooltip = () => {
+                            tooltip.classList.add('hidden');
+                            // Remove from DOM after transition
+                            setTimeout(() => tooltip.remove(), 500);
+
+                            // Cleanup listeners
+                            modelViewer.removeEventListener('mousedown', hideTooltip);
+                            modelViewer.removeEventListener('touchstart', hideTooltip);
+                        };
+
+                        modelViewer.addEventListener('mousedown', hideTooltip);
+                        modelViewer.addEventListener('touchstart', hideTooltip);
+                    }
+                });
+            </script>
 
             <!-- Hologram Video Overlay (Appears in Step 2) -->
             <div class="hologram-overlay">
@@ -156,7 +183,7 @@
 
                 stepObserver.observe(step2);
             }
-    });
+        });
     </script>
 </main>
 
