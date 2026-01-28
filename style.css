@@ -845,15 +845,22 @@ html {
     /* Adjust Hologram Overlay for mobile Step 2 */
     .sticky-scroll-container.step-2-active .hologram-overlay {
         pointer-events: auto;
-        width: 90vw;
-        /* Larger on mobile */
+        width: 80vw;
+        /* User preference: 80% of vw */
         max-width: none;
-        bottom: 20vh;
+        bottom: 35vh;
+        /* Raised from 20vh */
+    }
+
+    .hologram-frame {
+        padding: 15px !important;
+        /* Thinner frame on mobile */
     }
 
     /* Hide model or move it further down on mobile Step 2 if it covers video */
     .sticky-scroll-container.step-2-active .model-wrapper {
-        transform: translate(-50%, 40vh) scale(1) !important;
+        transform: translate(-50%, 25vh) scale(1.5) !important;
+        /* Raised (moved up) from 42vh */
         opacity: 0.3;
         /* Make it subtle so video stands out */
     }
