@@ -776,26 +776,31 @@ html {
     }
 
     /* Step 1: Text top-left, Model bottom-right */
+    /* Step 1: Flex Layout for Vertical Stacking */
     .step-1 .showcase-layout {
-        display: block;
-        /* Remove flex */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* Start from top */
         position: relative;
         width: 100%;
         height: 100vh;
-        padding: 0;
+        padding: 4rem 1.5rem 0 1.5rem;
+        /* Top padding for spacing */
+        box-sizing: border-box;
     }
 
     .step-1 .showcase-text {
-        /* Position text top-left, lowered slightly */
-        position: absolute;
-        top: 4rem;
-        /* Lowered from 2rem */
-        left: 1.5rem;
-        width: calc(100% - 3rem);
-        max-width: 400px;
+        /* Natural flow in flex container */
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-width: 500px;
         text-align: left;
         z-index: 100;
-        margin-bottom: 0;
+        margin-bottom: 2rem;
+        /* Spacing between text and model */
 
         /* Initial state - hidden below */
         opacity: 0;
@@ -813,17 +818,27 @@ html {
     }
 
     /* Model positioned bottom-center */
+    /* Model positioned naturally below text */
     .model-wrapper {
-        position: absolute !important;
-        bottom: 25vh;
-        left: 50% !important;
+        position: relative !important;
+        bottom: auto;
+        left: auto !important;
         right: auto !important;
-        width: 80vw !important;
-        height: 80vw !important;
-        max-width: none;
-        transform: translateX(-50%) !important;
-        /* Center horizontally */
+        width: 100% !important;
+        height: auto !important;
+        /* Let it fill available space or set aspect ratio */
+        aspect-ratio: 1/1;
+        /* Maintain square shape */
+        max-height: 50vh;
+        /* Limit height to half screen */
+        transform: none !important;
+        /* Remove centering transform as flex handles it */
+        margin-top: auto;
+        /* Push to bottom if there's extra space */
         z-index: 10;
+
+        /* Flex self alignment */
+        align-self: center;
     }
 
     .model-wrapper model-viewer {
@@ -862,10 +877,17 @@ html {
 
     /* Keep model color/visibility on mobile Step 2 */
     .sticky-scroll-container.step-2-active .model-wrapper {
+        position: absolute !important;
+        /* Restore absolute positioning for Step 2 logic */
+        bottom: 0 !important;
+        left: 50% !important;
+        width: 80vw !important;
+        margin: 0 !important;
+        /* Reset flex margin */
         transform: translate(-50%, 19vh) scale(1.5) !important;
-        /* Raised +6vh (from 25 to 19) */
         opacity: 1 !important;
-        /* Keep full color */
+        max-height: none !important;
+        /* Remove flex constraint */
     }
 
     /* Text entrance animation - triggered by JS .visible class */
