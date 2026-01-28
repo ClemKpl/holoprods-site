@@ -593,10 +593,11 @@ html {
     z-index: 100;
     pointer-events: none;
 
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.6);
+    /* Darker background */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
     padding: 0.8rem 1.5rem;
 
@@ -844,10 +845,11 @@ html {
 
     /* Adjust Hologram Overlay for mobile Step 2 */
     /* Adjust Hologram Overlay for mobile Step 2 */
+    /* Adjust Hologram Overlay for mobile Step 2 */
     .sticky-scroll-container.step-2-active .hologram-overlay {
         pointer-events: auto;
-        width: 50vw !important;
-        /* Force small width */
+        width: 90vw !important;
+        /* Set to 90% as requested */
         min-width: 0 !important;
         /* CRITICAL: Override desktop min-width of 500px */
         max-width: none;
