@@ -821,18 +821,24 @@ html {
     .model-wrapper {
         position: relative !important;
         bottom: auto;
-        left: auto !important;
+
+        /* Match Step 2 Horizontal Logic for smooth transition */
+        left: 50% !important;
+        width: 75vw !important;
+        /* Slightly smaller (Step 1 requirement) */
+        transform: translateX(-50%) !important;
+        /* Match Step 2 transform basis */
+
         right: auto !important;
-        width: 100% !important;
         height: auto !important;
         aspect-ratio: 1/1;
         max-height: 50vh;
-        transform: none !important;
-        /* CRITICAL: Remove random transforms to sync with Step 2 */
+
         margin-top: 0;
-        /* Minimized margin to reduce gap */
+        margin-left: 0;
         z-index: 10;
-        align-self: center;
+        align-self: flex-start;
+        /* Alignment handled by left: 50% */
     }
 
     .model-wrapper model-viewer {
