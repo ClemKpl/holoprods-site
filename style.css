@@ -736,14 +736,15 @@ html {
         font-size: 1rem;
     }
 
-    /* Model positioned bottom-right, overlapping with text area */
+    /* Model positioned bottom-left, overlapping with text area */
     .model-wrapper {
         position: absolute !important;
-        bottom: 15vh;
-        /* Positioned closer to bottom */
-        right: 0;
-        left: auto !important;
-        /* Override desktop left: 15% */
+        bottom: 25vh;
+        /* Raised higher for better positioning */
+        left: 0;
+        /* Left side to avoid thumb navigation zone */
+        right: auto !important;
+        /* Override any right positioning */
         width: 80vw !important;
         /* Increased from 70vw */
         height: 80vw !important;
