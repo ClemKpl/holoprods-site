@@ -26,6 +26,19 @@
 
 <body class="<?php echo isset($body_class) ? $body_class : ''; ?>">
 
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"
+        style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: #007bff; z-index: 99999; transition: width 0.1s ease-out;">
+    </div>
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scroll-progress').style.width = scrollPercent + "%";
+        });
+    </script>
+
     <!-- Header -->
     <header class="site-header" id="main-header">
         <div class="glass-bar">

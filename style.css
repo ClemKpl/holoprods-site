@@ -799,8 +799,8 @@ html {
         max-width: 500px;
         text-align: left;
         z-index: 100;
-        margin-bottom: 2rem;
-        /* Spacing between text and model */
+        margin-bottom: 0;
+        /* Reduced from 2rem to 0 to minimize gap */
 
         /* Initial state - hidden below */
         opacity: 0;
@@ -817,7 +817,6 @@ html {
         font-size: 1rem;
     }
 
-    /* Model positioned bottom-center */
     /* Model positioned naturally below text */
     .model-wrapper {
         position: relative !important;
@@ -826,18 +825,13 @@ html {
         right: auto !important;
         width: 100% !important;
         height: auto !important;
-        /* Let it fill available space or set aspect ratio */
         aspect-ratio: 1/1;
-        /* Maintain square shape */
         max-height: 50vh;
-        /* Limit height to half screen */
         transform: none !important;
-        /* Remove centering transform as flex handles it */
-        margin-top: auto;
-        /* Push to bottom if there's extra space */
+        /* CRITICAL: Remove random transforms to sync with Step 2 */
+        margin-top: 0;
+        /* Minimized margin to reduce gap */
         z-index: 10;
-
-        /* Flex self alignment */
         align-self: center;
     }
 
@@ -847,7 +841,6 @@ html {
         min-width: auto;
         min-height: auto;
         touch-action: pan-y !important;
-        /* Allow vertical scroll even when touching model */
     }
 
     /* Step 2 on mobile */
@@ -862,32 +855,26 @@ html {
     .sticky-scroll-container.step-2-active .hologram-overlay {
         pointer-events: auto;
         width: 90vw !important;
-        /* Set to 90% as requested */
         min-width: 0 !important;
-        /* CRITICAL: Override desktop min-width of 500px */
         max-width: none;
         bottom: 45vh;
-        /* User verified 45vh */
     }
 
     .hologram-frame {
         padding: 10px !important;
-        /* Thinner frame on mobile */
     }
 
     /* Keep model color/visibility on mobile Step 2 */
     .sticky-scroll-container.step-2-active .model-wrapper {
         position: absolute !important;
-        /* Restore absolute positioning for Step 2 logic */
         bottom: 0 !important;
         left: 50% !important;
         width: 80vw !important;
         margin: 0 !important;
-        /* Reset flex margin */
-        transform: translate(-50%, 19vh) scale(1.5) !important;
+        /* Raise model significantly (negative translateY moves it UP) */
+        transform: translate(-50%, -10vh) scale(1.5) !important;
         opacity: 1 !important;
         max-height: none !important;
-        /* Remove flex constraint */
     }
 
     /* Text entrance animation - triggered by JS .visible class */
