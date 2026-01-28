@@ -702,6 +702,8 @@ html {
     .scroll-steps {
         z-index: 20 !important;
         /* Higher than sticky-viewport */
+        margin-top: 15vh;
+        /* Add space after hero section */
     }
 
     /* Step 1: Text top-left, Model bottom-right */
@@ -757,9 +759,9 @@ html {
         right: auto !important;
         transform: translateX(-50%) !important;
         /* Center the model */
-        width: 80vw !important;
-        /* Increased from 70vw */
-        height: 80vw !important;
+        width: 90vw !important;
+        /* Increased from 80vw for larger presence */
+        height: 90vw !important;
         max-width: none;
         z-index: 10;
         /* Below text so text appears on top of model */
