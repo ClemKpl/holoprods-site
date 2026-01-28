@@ -21,6 +21,16 @@
                 <model-viewer src="assets/v2reexportpaslourd.glb" shadow-intensity="1" camera-orbit="215deg 80deg 105%"
                     auto-rotate camera-controls disable-zoom alt="Borne Holoprods">
                 </model-viewer>
+
+                <!-- Interaction Tooltip -->
+                <div class="interaction-tooltip">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z"
+                            fill="currentColor" />
+                    </svg>
+                    <span>Faites glisser pour explorer</span>
+                </div>
             </div>
 
             <!-- Hologram Video Overlay (Appears in Step 2) -->
@@ -86,11 +96,17 @@
 
             // --- Scroll Text Animation ---
             const textSection = document.querySelector('.showcase-text');
+            const modelWrapper = document.querySelector('.model-wrapper');
+
             if (textSection) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             textSection.classList.add('visible');
+                            // Synchronize model animation with text on mobile
+                            if (modelWrapper) {
+                                modelWrapper.classList.add('visible');
+                            }
                             observer.unobserve(entry.target);
                         }
                     });
@@ -99,6 +115,19 @@
                 });
 
                 observer.observe(textSection);
+            }
+
+            // --- Hide Tooltip on First Interaction ---
+            const modelWrapper = document.querySelector('.model-wrapper');
+            if (modelViewer && modelWrapper) {
+                const hideTooltip = () => {
+                    modelWrapper.classList.add('interacted');
+                    modelViewer.removeEventListener('mousedown', hideTooltip);
+                    modelViewer.removeEventListener('touchstart', hideTooltip);
+                };
+
+                modelViewer.addEventListener('mousedown', hideTooltip);
+                modelViewer.addEventListener('touchstart', hideTooltip);
             }
 
             // --- Scrollytelling Logic (Step 1 vs Step 2) ---
@@ -156,7 +185,7 @@
 
                 stepObserver.observe(step2);
             }
-    });
+        });
     </script>
 </main>
 
