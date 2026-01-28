@@ -18,7 +18,10 @@
     <link rel="preload" as="image" href="assets/Section-Hero-Index.png">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 
 <body class="<?php echo isset($body_class) ? $body_class : ''; ?>">

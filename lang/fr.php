@@ -25,9 +25,19 @@ $lang = array(
     'solutions_title' => 'Nos Solutions',
     'solutions_text' => 'Découvrez nos solutions sur mesure.',
 
-    // Homepage
-    'hero_title' => 'Imaginons ensemble',
-    'hero_subtitle' => 'Des expériences sur-mesures à hauteur de vos ambitions',
-    'cta_simulation' => 'Simulez un devis gratuit',
+    // Hero
+    'hero_title' => "Imaginons ensemble",
+    'hero_subtitle' => "Des expériences sur-mesures à hauteur de vos ambitions",
+    'cta_simulation' => "Simulez un devis gratuit",
+
+    // Presentation Steps (Scrollytelling)
+    'step1_title' => "Une première en France",
+    'step1_text' => "Découvrez l’expérience utilisateur comme vous ne l’avez jamais connu grâce à notre Borne Holographique Interactive.<br><br>Une borne par dessus laquelle flotte un écran avec lequel, sans aucun matériel, il est possible d’interagir.",
+
+    'step2_title' => "Sur-mesure & Design",
+    'step2_text' => "Disponibles à l'achat ou à la location. Partenariat avec un menuisier et stickers magnétiques pour une borne qui matche avec votre entreprise.",
+
+    'step3_title' => "Solution Clé en Main",
+    'step3_text' => "Chez Holoprods, nous avons aussi la casquette d’éditeur de logiciels pour préparer au mieux l’expérience qu’on met en place pour nos clients.",
 );
 ?>
