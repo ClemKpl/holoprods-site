@@ -55,7 +55,7 @@
                 <div class="hologram-frame">
                     <!-- YouTube Integration -->
                     <iframe width="100%" height="100%"
-                        src="https://www.youtube.com/embed/ex-cjj2I6WQ?autoplay=1&mute=0&controls=0&loop=1&playlist=ex-cjj2I6WQ&rel=0&playsinline=1&showinfo=0&modestbranding=1"
+                        src="https://www.youtube.com/embed/ex-cjj2I6WQ?autoplay=0&mute=0&controls=1&loop=1&playlist=ex-cjj2I6WQ&rel=0&playsinline=1&showinfo=0&modestbranding=1"
                         title="Hologram Video" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>

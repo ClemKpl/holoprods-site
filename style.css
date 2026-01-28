@@ -575,7 +575,8 @@ html {
     min-height: 400px;
     transition: all 1s ease;
     pointer-events: auto !important;
-    touch-action: none;
+    touch-action: pan-y;
+    /* Allow vertical scroll while interacting */
     cursor: grab;
     /* Show interactive cursor */
 }
@@ -829,11 +830,32 @@ html {
         max-height: 100%;
         min-width: auto;
         min-height: auto;
+        touch-action: pan-y !important;
+        /* Allow vertical scroll even when touching model */
     }
 
-    /* Hide Step 2 on mobile */
+    /* Step 2 on mobile */
     .step-2 {
-        display: none;
+        display: block !important;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+    }
+
+    /* Adjust Hologram Overlay for mobile Step 2 */
+    .sticky-scroll-container.step-2-active .hologram-overlay {
+        pointer-events: auto;
+        width: 90vw;
+        /* Larger on mobile */
+        max-width: none;
+        bottom: 20vh;
+    }
+
+    /* Hide model or move it further down on mobile Step 2 if it covers video */
+    .sticky-scroll-container.step-2-active .model-wrapper {
+        transform: translate(-50%, 40vh) scale(1) !important;
+        opacity: 0.3;
+        /* Make it subtle so video stands out */
     }
 
     /* Text entrance animation - triggered by JS .visible class */
