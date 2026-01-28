@@ -584,87 +584,6 @@ html {
     cursor: grabbing;
 }
 
-/* =========================================
-   INTERACTION TOOLTIP (Glassmorphism)
-   ========================================= */
-.interaction-tooltip {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 50;
-
-    /* Glassmorphism effect */
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
-    padding: 1rem 1.5rem;
-
-    /* Shadow for depth */
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-
-    /* Flexbox for icon + text */
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-
-    /* Typography */
-    color: #1a1a1a;
-    font-size: 0.95rem;
-    font-weight: 600;
-    white-space: nowrap;
-
-    /* Animation */
-    animation: tooltipPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-        tooltipFadeOut 0.4s ease-out 4s forwards;
-
-    /* Pointer events */
-    pointer-events: none;
-}
-
-.interaction-tooltip svg {
-    width: 20px;
-    height: 20px;
-    color: #1a1a1a;
-    flex-shrink: 0;
-}
-
-/* Pop-in animation */
-@keyframes tooltipPopIn {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-/* Fade out animation */
-@keyframes tooltipFadeOut {
-    to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.95);
-    }
-}
-
-/* Hide tooltip after first interaction */
-.model-wrapper.interacted .interaction-tooltip {
-    display: none;
-}
-
-/* Hide tooltip in Step 2 */
-.sticky-scroll-container.step-2-active .interaction-tooltip {
-    display: none;
-}
-
-
 .scroll-steps {
     position: absolute;
     top: 0;
@@ -783,8 +702,6 @@ html {
     .scroll-steps {
         z-index: 20 !important;
         /* Higher than sticky-viewport */
-        margin-top: 5vh;
-        /* Reduced space after hero section */
     }
 
     /* Step 1: Text top-left, Model bottom-right */
@@ -808,17 +725,6 @@ html {
         z-index: 100;
         /* Much higher to ensure it's above model */
         margin-bottom: 0;
-
-        /* Initial state - hidden below */
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    /* Entrance animation - fade up from bottom */
-    .step-1 .showcase-text.visible {
-        opacity: 1;
-        transform: translateY(0);
     }
 
     .step-1 .showcase-text h2 {
@@ -830,33 +736,23 @@ html {
         font-size: 1rem;
     }
 
-    /* Model positioned bottom-center on mobile */
+    /* Model positioned bottom-left, overlapping with text area */
     .model-wrapper {
         position: absolute !important;
         bottom: 25vh;
         /* Raised higher for better positioning */
-        left: 50% !important;
-        /* Centered horizontally */
+        left: 0;
+        /* Left side to avoid thumb navigation zone */
         right: auto !important;
-        transform: translateX(-50%) !important;
-        /* Center the model */
-        width: 90vw !important;
-        /* Increased from 80vw for larger presence */
-        height: 90vw !important;
+        /* Override any right positioning */
+        width: 80vw !important;
+        /* Increased from 70vw */
+        height: 80vw !important;
         max-width: none;
+        transform: translate(0, 0) !important;
+        /* Reset desktop transform */
         z-index: 10;
         /* Below text so text appears on top of model */
-
-        /* Initial state - hidden below, same as text */
-        opacity: 0;
-        transform: translateX(-50%) translateY(30px) !important;
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    /* Entrance animation - synchronized with text */
-    .model-wrapper.visible {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0) !important;
     }
 
     .model-wrapper model-viewer {
@@ -871,12 +767,11 @@ html {
         display: none;
     }
 
-    /* Remove individual h2/p animations on mobile - animate whole block instead */
+    /* Ensure text is always visible (no fade animations on mobile) */
     .step-1 .showcase-text h2,
     .step-1 .showcase-text p {
         opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
+        transform: translateY(0) !important;
     }
 }
 
