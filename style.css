@@ -819,26 +819,26 @@ html {
 
     /* Model positioned naturally below text */
     .model-wrapper {
-        position: relative !important;
-        bottom: auto;
+        position: absolute !important;
+        /* Revert to absolute because it's in a sticky container */
+        bottom: 5vh;
+        /* Anchor to bottom */
 
-        /* Match Step 2 Horizontal Logic for smooth transition */
+        /* Center Horizontally */
         left: 50% !important;
         width: 75vw !important;
-        /* Slightly smaller (Step 1 requirement) */
         transform: translateX(-50%) !important;
-        /* Match Step 2 transform basis */
 
         right: auto !important;
-        height: auto !important;
-        aspect-ratio: 1/1;
-        max-height: 50vh;
+        height: 75vw !important;
+        /* Base height on width */
+        max-height: 40vh;
+        /* CRITICAL: Strict limit to bottom 40% of screen to avoid text overlap */
 
         margin-top: 0;
         margin-left: 0;
         z-index: 10;
-        align-self: flex-start;
-        /* Alignment handled by left: 50% */
+        align-self: auto;
     }
 
     .model-wrapper model-viewer {
