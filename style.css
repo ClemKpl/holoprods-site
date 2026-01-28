@@ -844,8 +844,6 @@ html {
     }
 
     /* Adjust Hologram Overlay for mobile Step 2 */
-    /* Adjust Hologram Overlay for mobile Step 2 */
-    /* Adjust Hologram Overlay for mobile Step 2 */
     .sticky-scroll-container.step-2-active .hologram-overlay {
         pointer-events: auto;
         width: 90vw !important;
@@ -853,7 +851,8 @@ html {
         min-width: 0 !important;
         /* CRITICAL: Override desktop min-width of 500px */
         max-width: none;
-        bottom: 35vh;
+        bottom: 42vh;
+        /* Raised slightly from 35vh */
     }
 
     .hologram-frame {
