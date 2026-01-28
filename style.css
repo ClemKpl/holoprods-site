@@ -821,7 +821,8 @@ html {
     .model-wrapper {
         position: absolute !important;
         /* Revert to absolute because it's in a sticky container */
-        bottom: 5vh;
+        bottom: 12vh;
+        /* Raised from 5vh to reduce gap with text */
         /* Anchor to bottom */
 
         /* Center Horizontally */
