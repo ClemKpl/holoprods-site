@@ -851,8 +851,8 @@ html {
         min-width: 0 !important;
         /* CRITICAL: Override desktop min-width of 500px */
         max-width: none;
-        bottom: 42vh;
-        /* Raised slightly from 35vh */
+        bottom: 45vh;
+        /* User verified 45vh */
     }
 
     .hologram-frame {
@@ -862,7 +862,8 @@ html {
 
     /* Keep model color/visibility on mobile Step 2 */
     .sticky-scroll-container.step-2-active .model-wrapper {
-        transform: translate(-50%, 25vh) scale(1.5) !important;
+        transform: translate(-50%, 19vh) scale(1.5) !important;
+        /* Raised +6vh (from 25 to 19) */
         opacity: 1 !important;
         /* Keep full color */
     }
