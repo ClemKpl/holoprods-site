@@ -561,7 +561,8 @@ html {
 .sticky-scroll-container.step-2-active .model-wrapper {
     left: 0;
     /* Center horizontally */
-    transform: translate(0, 450px) scale(1.6);
+    transform: translate(0, 25vh) scale(1.6);
+    /* Responsive vertical move (was 450px) */
     /* Vertical Move + Scale only */
 }
 
@@ -865,6 +866,8 @@ html {
         min-width: 0 !important;
         max-width: none;
         bottom: 45vh;
+        top: auto !important;
+        /* Ensure top doesn't conflict with base style */
     }
 
     .hologram-frame {
@@ -905,10 +908,13 @@ html {
    ========================================= */
 .hologram-overlay {
     position: absolute;
-    /* Dynamic offset - pushes video higher on larger screens */
-    bottom: calc(15vh + (100vw - 1000px) / 100);
+    /* Dynamic offset - Responsive centering for Tablet/Desktop */
+    top: 50vh;
+    /* Adjustment to 70vh as requested */
+    bottom: auto;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    /* True Center */
     z-index: 20;
     /* Disable pointer-events by default - only enable in Step 2 */
     pointer-events: none;
