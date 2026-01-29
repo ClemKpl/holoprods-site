@@ -756,24 +756,38 @@ html {
    ========================================= */
 @media (max-width: 900px) {
 
-    /* Single step on mobile - reduced height */
+    /* Use flexbox for vertical stacking on mobile */
     .sticky-scroll-container {
-        height: 100vh;
-        /* Single unified step */
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
     }
 
     .sticky-viewport {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        /* Keep sticky positioning */
-        z-index: 5 !important;
-        /* Lower than scroll-steps (default 5) so text is above model */
+        position: relative;
+        /* Change to relative for normal flow */
+        height: auto;
+        /* Auto height for content */
+        order: 2;
+        /* Place after text (which has order: 1) */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .scroll-steps {
-        z-index: 20 !important;
-        /* Higher than sticky-viewport */
+        position: relative;
+        /* Remove absolute positioning */
+        order: 1;
+        /* Place before sticky-viewport */
+    }
+
+    .scroll-step {
+        height: auto !important;
+        /* Override desktop 100vh height */
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     /* Step 1: Text top-left, Model bottom-right */
@@ -785,9 +799,10 @@ html {
         /* Start from top */
         position: relative;
         width: 100%;
-        height: 100vh;
-        padding: 4rem 1.5rem 0 1.5rem;
-        /* Top padding for spacing */
+        height: auto;
+        /* Auto height instead of 100vh */
+        padding: 4rem 1.5rem 4rem 1.5rem;
+        /* No top padding for minimal spacing */
         box-sizing: border-box;
     }
 
@@ -830,19 +845,20 @@ html {
         display: none !important;
     }
 
-    /* Hologram overlay - always visible on mobile, positioned below text */
+    /* Hologram overlay - normal flow on mobile */
     .hologram-overlay {
-        position: absolute !important;
+        position: relative !important;
         top: auto !important;
-        bottom: 5vh !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
         width: 90vw !important;
         min-width: 0 !important;
         max-width: none !important;
         pointer-events: auto !important;
         opacity: 1 !important;
-        z-index: 10 !important;
+        margin: 0 auto !important;
+        /* Remove vertical margin, keep horizontal centering */
     }
 
     .hologram-frame {
@@ -863,32 +879,31 @@ html {
 
     /* No text exit animation on mobile - single step layout */
 
-    /* Mobile-Only Model - Show on Mobile */
+    /* Mobile-Only Model - Normal flow below video */
     .mobile-model-wrapper {
         display: block !important;
-        position: absolute !important;
+        position: relative !important;
+        /* Normal flow positioning */
 
-        /* Video is at bottom: 5vh, which means its bottom edge is 5vh from viewport bottom */
-        /* This is equivalent to top: calc(100vh - 5vh - video_height) */
-        /* Video height ≈ 90vw * (10/16) + padding ≈ 56.25vw + 2vw = 58.25vw */
-
-        /* Position model top at video bottom */
-        /* Video bottom from top = 100vh - 5vh = 95vh */
-        top: calc(100vh - 25vh) !important;
-        bottom: auto !important;
-
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-
-        /* Make model same width as video for consistency */
-        width: 90vw !important;
-        height: calc(90vw * 0.5625) !important;
+        /* Make model 160% of video width (90vw * 1.6 = 144vw) */
+        width: 144vw !important;
+        height: calc(144vw * 0.5625) !important;
         /* Maintain 16:10 aspect ratio */
-        max-height: 30vh !important;
 
-        z-index: 5 !important;
+        /* Center horizontally using negative margins for overflowing content */
+        /* Formula: calc(50% - half_width) */
+        /* Width is 144vw, half is 72vw */
+        margin-left: calc(50% - 72vw) !important;
+        margin-right: calc(50% - 72vw) !important;
+        margin-top: -4rem !important;
+        margin-bottom: 2rem !important;
+
+        /* Ensure left/transform doesn't interfere */
+        left: auto;
+        transform: none;
+
         pointer-events: none !important;
-        /* Make it untouchable */
+        /* Keep it untouchable */
     }
 
     .mobile-model-wrapper model-viewer {
