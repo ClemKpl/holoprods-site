@@ -68,6 +68,8 @@
         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
     </svg>
 </a>
+<script src="js/scroll-model.js"></script>
+<script src="js/mobile-video-fade.js"></script>
 </body>
 
 </html>

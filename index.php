@@ -90,6 +90,13 @@
         </div>
     </section>
 
+    <!-- Dark Section (Gradient Continuation) -->
+    <section class="dark-section">
+        <div class="container">
+            <!-- Section vierge prête pour votre contenu -->
+        </div>
+    </section>
+
     <!-- Script for materials (Sunset Glow) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {

@@ -523,6 +523,23 @@ html {
     z-index: 10;
 }
 
+/* Gradient overlay filter on top of content */
+.sticky-scroll-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            transparent 70%,
+            #2a2a2a 100%);
+    pointer-events: none;
+    z-index: 100;
+    /* Above all content including borne */
+}
+
 .sticky-viewport {
     position: sticky;
     top: 0;
@@ -880,13 +897,15 @@ html {
         clip-path: inset(0 0 0% 0) !important;
 
         /* Animation properties */
-        opacity: 0 !important;
-        /* Start hidden */
-        transform: scale(0.8) !important;
+        opacity: 0;
+        /* Start hidden (not important so animation can override) */
+        transform: scale(0.8);
         /* Start scaled down */
         animation: mobileVideoReveal 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
-        animation-delay: 0.5s !important;
-        /* Le petit décalage demandé */
+        animation-fill-mode: both !important;
+        /* Ensure initial state is applied before delay */
+        animation-delay: 1s !important;
+        /* Video appears 1s after page load */
     }
 
     /* Model wrapper hidden on mobile - no Step 2 active state needed */
@@ -924,6 +943,24 @@ html {
 
         pointer-events: none !important;
         /* Keep it untouchable */
+
+        /* Entrance animation for faster appearance */
+        opacity: 0;
+        animation: mobileModelReveal 0.8s ease-out forwards;
+        animation-delay: 0s;
+        /* Borne appears immediately */
+    }
+
+    @keyframes mobileModelReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .mobile-model-wrapper model-viewer {
@@ -1403,4 +1440,29 @@ html {
         width: 24px;
         height: 24px;
     }
+}
+
+/* =========================================
+   DARK SECTION (Gradient Continuation)
+   ========================================= */
+.dark-section {
+    background-color: #2a2a2a;
+    min-height: 200vh;
+    padding: 4rem 2rem;
+    color: #ffffff;
+    margin-top: -2rem;
+}
+
+.dark-section h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.dark-section p {
+    font-size: 1.25rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
 }
