@@ -861,12 +861,32 @@ html {
         /* Remove vertical margin, keep horizontal centering */
     }
 
+    /* Mobile Video Entrance Animation */
+    @keyframes mobileVideoReveal {
+        0% {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
     .hologram-frame {
-        padding: 10px !important;
-        opacity: 1 !important;
+        padding: 5px !important;
+        /* Reduced video border */
         clip-path: inset(0 0 0% 0) !important;
-        transform: translateY(0) scale(1) rotateX(0deg) !important;
-        transition: none !important;
+
+        /* Animation properties */
+        opacity: 0 !important;
+        /* Start hidden */
+        transform: scale(0.8) !important;
+        /* Start scaled down */
+        animation: mobileVideoReveal 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+        animation-delay: 0.5s !important;
+        /* Le petit décalage demandé */
     }
 
     /* Model wrapper hidden on mobile - no Step 2 active state needed */
