@@ -577,11 +577,15 @@ h6 {
 
 @media (max-width: 900px) {
     .intro-section {
-        padding: 8rem 4.5rem;
+        padding: 8rem 2.5rem;
     }
 
     .intro-text {
         font-size: 1.5rem;
+    }
+
+    .brush-target::after {
+        height: 3px;
     }
 }
 
