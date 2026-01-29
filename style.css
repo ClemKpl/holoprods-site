@@ -1656,7 +1656,7 @@ html {
 
 /* Scroll Background Image */
 .sticky-scroll-container {
-    background-image: url('assets/abstract_wave_hd.png');
+    background-image: url('assets/abstract_wave.svg');
     background-size: 100% auto;
     /* Fit width, natural height */
     background-position: center center;
