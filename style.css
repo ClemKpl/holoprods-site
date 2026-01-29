@@ -577,7 +577,7 @@ h6 {
 
 @media (max-width: 900px) {
     .intro-section {
-        padding: 4rem 4.5rem;
+        padding: 8rem 4.5rem;
     }
 
     .intro-text {
@@ -909,7 +909,7 @@ html {
         width: 100%;
         height: auto;
         /* Auto height instead of 100vh */
-        padding: 4rem 1.5rem 4rem 1.5rem;
+        padding: 6rem 1.5rem 4rem 1.5rem;
         /* No top padding for minimal spacing */
         box-sizing: border-box;
     }
