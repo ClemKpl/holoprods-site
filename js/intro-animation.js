@@ -1,21 +1,26 @@
-// Intro Text Fade-In Animation
+// Intro Text & Background Reveal Animation
 document.addEventListener('DOMContentLoaded', () => {
-    const introText = document.querySelector('.intro-text');
-
-    if (!introText) return;
+    // Elements to reveal
+    const revealElements = document.querySelectorAll('.intro-text, .intro-section, .sticky-scroll-container');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                introText.classList.add('visible');
-                // Optional: Stop observing once visible
+                // Add specific class based on element type
+                if (entry.target.classList.contains('intro-text')) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.add('revealed');
+                }
+
+                // Stop observing once revealed
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.3, // Trigger when 30% visible
+        threshold: 0.15, // Trigger when 15% visible (earlier for backgrounds)
         rootMargin: '0px'
     });
 
-    observer.observe(introText);
+    revealElements.forEach(el => observer.observe(el));
 });

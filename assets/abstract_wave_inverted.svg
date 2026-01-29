@@ -1,0 +1,24 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Group 1: The Main thick organic stroke (Inverted & Dynamic) -->
+    <g opacity="0.9">
+         <!-- Core stroke: Y goes from ~0 to ~1100 (Full screen but contained) -->
+        <path d="M-50 640 C 450 0, 850 1100, 1970 540" stroke="black" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        
+        <!-- Slight offset 1 -->
+        <path d="M-50 638 C 455 -5, 845 1095, 1970 538" stroke="black" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+        <!-- Slight offset 2 -->
+        <path d="M-50 641 C 445 5, 855 1105, 1970 541" stroke="black" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+    </g>
+
+    <!-- Group 2: The Secondary lighter aesthetic line -->
+    <g opacity="0.8">
+         <path d="M-50 610 C 450 -30, 850 1070, 1970 510" stroke="black" stroke-width="1" stroke-linecap="round" fill="none"/>
+    </g>
+    
+    <!-- Group 3: Artistic sketch details -->
+     <g opacity="0.4">
+        <!-- A line that diverges slightly -->
+        <path d="M-50 639 C 460 -10, 840 1110, 1970 539" stroke="black" stroke-width="0.5" stroke-linecap="round" fill="none"/>
+    </g>
+</svg>
