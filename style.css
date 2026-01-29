@@ -80,12 +80,20 @@ h6 {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    /* ULTRA GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.65);
+    /* More texture */
+    backdrop-filter: blur(20px) saturate(180%);
+    /* Higher blur + saturation */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* Brighter border */
+    /* Shining Border Glow */
+    box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    /* Inner shine */
     padding: 0.5rem 2rem;
 }
 
@@ -721,14 +729,19 @@ html {
 }
 
 .step-1 .showcase-text h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    /* Large Section Title */
     margin-bottom: 1.5rem;
     color: #1a1a1a;
-    font-weight: 700;
+    font-weight: 800;
+    /* Match Hero H1 Weight */
+    line-height: 1.1;
+    /* Tighter line height for large text */
 }
 
 .step-1 .showcase-text p {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    /* Reduced from 1.5rem */
     color: #333;
     line-height: 1.6;
     font-weight: 500;
@@ -1391,6 +1404,17 @@ html {
         padding-top: 20px;
         padding-left: 2rem;
         padding-right: 1.5rem;
+    }
+
+    /* Match Hero Mobile Typography for Scrollytelling */
+    .step-1 .showcase-text h2 {
+        font-size: 3rem;
+        /* Match Hero H1 Mobile */
+    }
+
+    .step-1 .showcase-text p {
+        font-size: 1.1rem;
+        /* Match Hero P Mobile */
     }
 
     .header-actions {
