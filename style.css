@@ -561,8 +561,8 @@ html {
 .sticky-scroll-container.step-2-active .model-wrapper {
     left: 0;
     /* Center horizontally */
-    transform: translate(0, 25vh) scale(1.6);
-    /* Responsive vertical move (was 450px) */
+    transform: translate(0, 60vh) scale(1.6);
+    /* Adjusted to 60vh as requested */
     /* Vertical Move + Scale only */
 }
 
@@ -867,7 +867,9 @@ html {
         max-width: none;
         bottom: 45vh;
         top: auto !important;
-        /* Ensure top doesn't conflict with base style */
+        /* Force top to auto to respect bottom */
+        transform: translateX(-50%) !important;
+        /* CRITICAL: Override desktop Translate Y (-50%) */
     }
 
     .hologram-frame {
