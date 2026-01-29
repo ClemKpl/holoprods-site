@@ -756,10 +756,10 @@ html {
    ========================================= */
 @media (max-width: 900px) {
 
-    /* Keep sticky scroll behavior on mobile */
+    /* Single step on mobile - reduced height */
     .sticky-scroll-container {
-        height: 200vh;
-        /* Maintain scroll */
+        height: 100vh;
+        /* Single unified step */
     }
 
     .sticky-viewport {
@@ -818,76 +818,42 @@ html {
         font-size: 1rem;
     }
 
-    /* Model positioned naturally below text */
+    /* Hide interactive model on mobile - we'll show static model + video instead */
     .model-wrapper {
-        position: absolute !important;
-        /* Revert to absolute because it's in a sticky container */
-        bottom: 15vh;
-        /* Raised further to 15vh as requested */
-        /* Anchor to bottom */
-
-        /* Center Horizontally */
-        left: 50% !important;
-        width: 75vw !important;
-        transform: translateX(-50%) !important;
-
-        right: auto !important;
-        height: 75vw !important;
-        /* Base height on width */
-        max-height: 40vh;
-        /* CRITICAL: Strict limit to bottom 40% of screen to avoid text overlap */
-
-        margin-top: 0;
-        margin-left: 0;
-        z-index: 10;
-        align-self: auto;
+        display: none !important;
     }
 
-    .model-wrapper model-viewer {
-        max-width: 100%;
-        max-height: 100%;
-        min-width: auto;
-        min-height: auto;
-        touch-action: pan-y !important;
-    }
+    /* Model viewer hidden on mobile */
 
-    /* Step 2 on mobile */
+    /* Step 2 hidden on mobile - everything in single step */
     .step-2 {
-        display: block !important;
-        height: 100vh;
-        width: 100%;
-        position: relative;
+        display: none !important;
     }
 
-    /* Adjust Hologram Overlay for mobile Step 2 */
-    .sticky-scroll-container.step-2-active .hologram-overlay {
-        pointer-events: auto;
+    /* Hologram overlay - always visible on mobile, positioned below text */
+    .hologram-overlay {
+        position: absolute !important;
+        top: auto !important;
+        bottom: 5vh !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         width: 90vw !important;
         min-width: 0 !important;
-        max-width: none;
-        bottom: 45vh;
-        top: auto !important;
-        /* Force top to auto to respect bottom */
-        transform: translateX(-50%) !important;
-        /* CRITICAL: Override desktop Translate Y (-50%) */
+        max-width: none !important;
+        pointer-events: auto !important;
+        opacity: 1 !important;
+        z-index: 10 !important;
     }
 
     .hologram-frame {
         padding: 10px !important;
+        opacity: 1 !important;
+        clip-path: inset(0 0 0% 0) !important;
+        transform: translateY(0) scale(1) rotateX(0deg) !important;
+        transition: none !important;
     }
 
-    /* Keep model color/visibility on mobile Step 2 */
-    .sticky-scroll-container.step-2-active .model-wrapper {
-        position: absolute !important;
-        bottom: 0 !important;
-        left: 50% !important;
-        width: 80vw !important;
-        margin: 0 !important;
-        /* Raise model significantly (negative translateY moves it UP) */
-        transform: translate(-50%, -10vh) scale(1.5) !important;
-        opacity: 1 !important;
-        max-height: none !important;
-    }
+    /* Model wrapper hidden on mobile - no Step 2 active state needed */
 
     /* Text entrance animation - triggered by JS .visible class */
     .step-1 .showcase-text.visible {
@@ -895,10 +861,41 @@ html {
         transform: translateY(0);
     }
 
-    /* Text exit animation - simple fade out */
-    .sticky-scroll-container.step-2-active .step-1 .showcase-text {
-        opacity: 0;
-        transition: opacity 0.5s ease-out;
+    /* No text exit animation on mobile - single step layout */
+
+    /* Mobile-Only Model - Show on Mobile */
+    .mobile-model-wrapper {
+        display: block !important;
+        position: absolute !important;
+
+        /* Video is at bottom: 5vh, which means its bottom edge is 5vh from viewport bottom */
+        /* This is equivalent to top: calc(100vh - 5vh - video_height) */
+        /* Video height ≈ 90vw * (10/16) + padding ≈ 56.25vw + 2vw = 58.25vw */
+
+        /* Position model top at video bottom */
+        /* Video bottom from top = 100vh - 5vh = 95vh */
+        top: calc(100vh - 25vh) !important;
+        bottom: auto !important;
+
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+
+        /* Make model same width as video for consistency */
+        width: 90vw !important;
+        height: calc(90vw * 0.5625) !important;
+        /* Maintain 16:10 aspect ratio */
+        max-height: 30vh !important;
+
+        z-index: 5 !important;
+        pointer-events: none !important;
+        /* Make it untouchable */
+    }
+
+    .mobile-model-wrapper model-viewer {
+        width: 100% !important;
+        height: 100% !important;
+        pointer-events: none !important;
+        /* Disable all interactions */
     }
 }
 
@@ -938,6 +935,11 @@ html {
     justify-content: center;
     align-items: center;
     perspective: 1000px;
+}
+
+/* Mobile-Only Model - Hidden on Desktop */
+.mobile-model-wrapper {
+    display: none;
 }
 
 .hologram-frame {

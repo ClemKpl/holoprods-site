@@ -62,6 +62,13 @@
                     </iframe>
                 </div>
             </div>
+
+            <!-- Mobile-Only Model (Below Video) -->
+            <div class="mobile-model-wrapper">
+                <model-viewer src="assets/v2reexportpaslourd.glb" shadow-intensity="1" camera-orbit="180deg 80deg 105%"
+                    alt="Borne Holoprods" disable-zoom>
+                </model-viewer>
+            </div>
         </div>
 
         <!-- Scrollable Steps -->
