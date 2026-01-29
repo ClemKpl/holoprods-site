@@ -11,13 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Video is in viewport - fade in
+                // Video is in viewport - fade in
                 videoOverlay.style.opacity = '1';
-                videoOverlay.style.transition = 'opacity 0.6s ease-in-out';
-            } else {
-                // Video is out of viewport - fade out
-                videoOverlay.style.opacity = '0';
-                videoOverlay.style.transition = 'opacity 0.6s ease-in-out';
             }
+            // Removed fade out logic - video stays visible once triggered
         });
     }, {
         threshold: 0.2, // Trigger when 20% of video is visible
