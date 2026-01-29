@@ -10,6 +10,13 @@
         </div>
     </section>
 
+    <!-- Intro Text Section -->
+    <section class="intro-section">
+        <div class="container">
+            <p class="intro-text"><?php echo $lang['intro_text']; ?></p>
+        </div>
+    </section>
+
     <!-- Scrolling Content -->
     <!-- Presentation Scroller -->
     <!-- Model Showcase Section -->

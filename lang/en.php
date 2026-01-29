@@ -29,6 +29,7 @@ $lang = array(
     'hero_title' => "Let's imagine together",
     'hero_subtitle' => "Tailored experiences matching your ambitions",
     'cta_simulation' => "Get a free quote",
+    'intro_text' => 'At Holoprods, <strong>digital innovation</strong> is at the heart of our thinking to create extraordinary <strong class="brush-target">experiences</strong>.',
 
     // Presentation Steps (Scrollytelling)
     'step1_title' => "A First in France",

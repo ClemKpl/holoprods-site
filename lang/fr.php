@@ -29,6 +29,7 @@ $lang = array(
     'hero_title' => "Imaginons ensemble",
     'hero_subtitle' => "Des expériences sur-mesures à hauteur de vos ambitions",
     'cta_simulation' => "Simulez un devis gratuit",
+    'intro_text' => 'Chez Holoprods, l’<strong>innovation digitale</strong> est au coeur de nos réflexions pour créer des <strong class="brush-target">expériences</strong> hors du commun.',
 
     // Presentation Steps (Scrollytelling)
     'step1_title' => "Une première en France",
