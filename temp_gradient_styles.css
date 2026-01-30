@@ -1,0 +1,45 @@
+/* =========================================
+   GRADIENT TRANSITION SECTION
+   ========================================= */
+.gradient-transition {
+    min-height: 40vh;
+    background: linear-gradient(to bottom,
+            #2a2a2a 0%,
+            /* Dark gray from dark-section */
+            #8a8a8a 50%,
+            /* Medium gray */
+            #d0d0d0 80%,
+            /* Light gray */
+            #ffffff 100%);
+    /* White */
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+/* =========================================
+   WHITE SECTION
+   ========================================= */
+.white-section {
+    background-color: #ffffff;
+    min-height: 100vh;
+    padding: 8rem 2rem;
+    position: relative;
+}
+
+.white-section .container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+    .gradient-transition {
+        min-height: 30vh;
+    }
+
+    .white-section {
+        padding: 4rem 2rem;
+        min-height: 80vh;
+    }
+}

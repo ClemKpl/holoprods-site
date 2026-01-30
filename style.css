@@ -1015,7 +1015,25 @@ html {
     .hologram-overlay.waiting-for-model {
         opacity: 0 !important;
         pointer-events: none !important;
-        transition: opacity 0.8s ease-out !important;
+        transition: opacity 1.2s ease-in-out !important;
+        /* Transition plus longue et douce */
+    }
+
+    /* Smooth fade-in when video appears */
+    .hologram-overlay {
+        animation: videoFadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes videoFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* Mobile Video Entrance Animation */
@@ -1534,7 +1552,8 @@ html {
     /* Full Width Menu on Mobile */
     .mobile-nav {
         width: 90vw;
-        height: 90vh;
+        height: 70vh;
+        /* Réduit de 90vh à 70vh */
         border-radius: 24px;
         padding-top: 20px;
         padding-left: 2rem;

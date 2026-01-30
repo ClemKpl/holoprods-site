@@ -41,5 +41,9 @@ $lang = array(
     'step3_title' => "Solution Clé en Main",
     'step3_text' => "Chez Holoprods, nous avons aussi la casquette d’éditeur de logiciels pour préparer au mieux l’expérience qu’on met en place pour nos clients.",
     'interact_tooltip' => "Interagissez avec le modèle",
+
+    // Customization Section
+    'customization_title' => 'Personnalisation sur mesure',
+    'customization_text' => 'Nous disposons d\'un partenariat avec un menuisier et d\'une option de stickers magnétiques personnalisés pour une borne qui match avec votre entreprise.',
 );
 ?>

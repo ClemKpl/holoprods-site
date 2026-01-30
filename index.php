@@ -111,10 +111,9 @@
                                 d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"
                                 fill="currentColor" />
                         </svg>
-                        Personnalisation sur mesure
+                        <?php echo $lang['customization_title']; ?>
                     </h2>
-                    <p>Nous disposons d'un partenariat avec un menuisier et d'une option de stickers magnétiques
-                        personnalisés pour une borne qui match avec votre entreprise.</p>
+                    <p><?php echo $lang['customization_text']; ?></p>
                 </div>
 
                 <!-- Vertical Separator -->
@@ -128,6 +127,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Gradient Transition Section -->
+    <section class="gradient-transition"></section>
+
+    <!-- White Section -->
+    <section class="white-section">
+        <div class="container">
+            <!-- Contenu à venir -->
         </div>
     </section>
 

@@ -1,0 +1,10 @@
+
+    <!-- Gradient Transition Section -->
+    <section class="gradient-transition"></section>
+
+    <!-- White Section -->
+    <section class="white-section">
+        <div class="container">
+            <!-- Contenu à venir -->
+        </div>
+    </section>

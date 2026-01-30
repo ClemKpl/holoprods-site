@@ -41,5 +41,9 @@ $lang = array(
     'step3_title' => "Turnkey Solution",
     'step3_text' => "At Holoprods, we also act as software publishers to craft the perfect experience for our clients.",
     'interact_tooltip' => "Interact with the model",
+
+    // Customization Section
+    'customization_title' => 'Custom Made Personalization',
+    'customization_text' => 'We have a partnership with a carpenter and custom magnetic sticker options for a kiosk that perfectly matches your business.',
 );
 ?>
