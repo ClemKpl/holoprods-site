@@ -26,7 +26,7 @@
             <!-- The Model (Stays Fixed) -->
             <div class="model-wrapper">
                 <model-viewer src="assets/v2reexportpaslourd.glb" shadow-intensity="1" camera-orbit="215deg 80deg 105%"
-                    auto-rotate camera-controls disable-zoom alt="Borne Holoprods">
+                    auto-rotate camera-controls disable-zoom alt="Borne Holoprods" loading="eager" reveal="auto">
                 </model-viewer>
 
                 <!-- Interaction Tooltip -->
@@ -73,7 +73,7 @@
             <!-- Mobile-Only Model (Below Video) -->
             <div class="mobile-model-wrapper">
                 <model-viewer src="assets/v2reexportpaslourd.glb" shadow-intensity="1" camera-orbit="180deg 80deg 105%"
-                    alt="Borne Holoprods" disable-zoom>
+                    alt="Borne Holoprods" disable-zoom loading="eager" reveal="auto">
                 </model-viewer>
             </div>
         </div>

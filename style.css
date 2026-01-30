@@ -1552,8 +1552,7 @@ html {
     /* Full Width Menu on Mobile */
     .mobile-nav {
         width: 90vw;
-        height: 70vh;
-        /* Réduit de 90vh à 70vh */
+        height: 80vh;
         border-radius: 24px;
         padding-top: 20px;
         padding-left: 2rem;
@@ -1955,9 +1954,64 @@ html {
 
     .customization-content h2 {
         font-size: 2rem;
+        justify-content: center;
+        /* Centrer le flex titre + icône */
+        text-align: center;
     }
 
     .customization-content p {
         font-size: 1.125rem;
+        text-align: center;
+        /* Centrer le texte */
+    }
+}
+
+/* =========================================
+   GRADIENT TRANSITION SECTION
+   ========================================= */
+.gradient-transition {
+    min-height: 20vh;
+    /* Réduit de 40vh à 20vh */
+    background: linear-gradient(to bottom,
+            #2a2a2a 0%,
+            /* Dark gray from dark-section */
+            #8a8a8a 50%,
+            /* Medium gray */
+            #d0d0d0 80%,
+            /* Light gray */
+            #ffffff 100%);
+    /* White */
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   WHITE SECTION
+   ========================================= */
+.white-section {
+    background-color: #ffffff;
+    min-height: 100vh;
+    padding: 8rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.white-section .container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+    .gradient-transition {
+        min-height: 15vh;
+        /* Réduit de 30vh à 15vh */
+    }
+
+    .white-section {
+        padding: 4rem 2rem;
+        min-height: 80vh;
     }
 }
