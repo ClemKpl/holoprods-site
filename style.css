@@ -962,6 +962,10 @@ html {
         width: 100%;
         max-width: 500px;
         text-align: left;
+        align-self: flex-start;
+        /* Force l'alignement à gauche dans le flex container */
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
         z-index: 100;
         margin-bottom: 0;
         /* Removed margin to close gap */
@@ -1887,8 +1891,8 @@ html {
 
 /* Brush Icon Animation */
 .brush-icon {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     color: #ABDBEF;
     /* Bleu clair du logo Holoprods */
     filter: drop-shadow(0 0 8px rgba(171, 219, 239, 0.6));
