@@ -1778,9 +1778,27 @@ html {
 /* Dark Section Background */
 .dark-section {
     background-color: #2a2a2a;
-    padding: 14rem 2rem 6rem 2rem;
+    padding: 10rem 2rem;
     min-height: 50vh;
     position: relative;
+    margin-top: -20vh;
+    /* Remonte sur la section précédente */
+    z-index: 10;
+    /* Passe au-dessus de la borne 3D */
+}
+
+/* Gradient Fade at the top of Dark Section */
+.dark-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh;
+    background: linear-gradient(to bottom, rgba(42, 42, 42, 0) 0%, #2a2a2a 100%);
+    transform: translateY(-99%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* White SVG Wave Background with Reveal Animation (Top to Bottom) */
@@ -1954,9 +1972,6 @@ html {
 
     .customization-content h2 {
         font-size: 2rem;
-        justify-content: center;
-        /* Centrer le flex titre + icône */
-        text-align: center;
     }
 
     .customization-content p {
