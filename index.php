@@ -100,7 +100,34 @@
     <!-- Dark Section (Gradient Continuation) -->
     <section class="dark-section">
         <div class="container">
-            <!-- Section vierge prête pour votre contenu -->
+            <!-- Customization Glass Container -->
+            <div class="customization-container">
+                <!-- Left Content -->
+                <div class="customization-content">
+                    <h2>
+                        <svg class="brush-icon" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"
+                                fill="currentColor" />
+                        </svg>
+                        Personnalisation sur mesure
+                    </h2>
+                    <p>Nous disposons d'un partenariat avec un menuisier et d'une option de stickers magnétiques
+                        personnalisés pour une borne qui match avec votre entreprise.</p>
+                </div>
+
+                <!-- Vertical Separator -->
+                <div class="vertical-separator"></div>
+
+                <!-- Right Interactive Element (Placeholder) -->
+                <div class="interactive-placeholder">
+                    <div class="placeholder-content">
+                        <!-- Interactive element will be configured later -->
+                        <p>Configuration à venir</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -109,6 +136,25 @@
         document.addEventListener('DOMContentLoaded', () => {
             // --- Model Material Logic ---
             const modelViewer = document.querySelector('model-viewer');
+            const mobileModelViewer = document.querySelector('.mobile-model-wrapper model-viewer');
+            const hologramOverlay = document.querySelector('.hologram-overlay');
+            
+            // Sur mobile, cacher la vidéo jusqu'au chargement du modèle
+            if (window.innerWidth <= 900 && hologramOverlay) {
+                hologramOverlay.classList.add('waiting-for-model');
+                
+                // Écouter le chargement du modèle mobile
+                const targetModel = mobileModelViewer || modelViewer;
+                if (targetModel) {
+                    targetModel.addEventListener('load', () => {
+                        // Attendre un peu pour que le rendu soit complet
+                        setTimeout(() => {
+                            hologramOverlay.classList.remove('waiting-for-model');
+                        }, 500);
+                    });
+                }
+            }
+            
             if (modelViewer) {
                 modelViewer.addEventListener("load", () => {
                     if (!modelViewer.model || !modelViewer.model.materials) return;

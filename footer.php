@@ -71,6 +71,7 @@
 <script src="js/scroll-model.js"></script>
 <script src="js/mobile-video-fade.js"></script>
 <script src="js/intro-animation.js"></script>
+<script src="js/customization-animation.js"></script>
 </body>
 
 </html>

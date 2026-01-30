@@ -1,7 +1,7 @@
 // Intro Text & Background Reveal Animation
 document.addEventListener('DOMContentLoaded', () => {
     // Elements to reveal
-    const revealElements = document.querySelectorAll('.intro-text, .intro-section, .sticky-scroll-container');
+    const revealElements = document.querySelectorAll('.intro-text, .intro-section, .sticky-scroll-container, .dark-section');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
