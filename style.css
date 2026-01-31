@@ -741,17 +741,21 @@ html {
     /* Darker background */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 50px;
     padding: 0.8rem 1.5rem;
 
     color: #ffffff;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.9rem;
     text-align: center;
     white-space: nowrap;
 
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Luminous Border Effect */
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(255, 255, 255, 0.3),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     animation: tooltip-float 3s ease-in-out infinite;
@@ -2017,6 +2021,38 @@ html {
     z-index: 1;
 }
 
+/* Abstract Wave Background for White Section */
+.white-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Reusing abstract_wave.svg (dark wave) for contrast on white background */
+    background-image: url('assets/abstract_wave.svg');
+    background-size: cover;
+    background-position: center center;
+    /* Centered as requested */
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+    /* Rotation demandée */
+    z-index: -1;
+    pointer-events: none;
+    opacity: 1;
+    /* Fully visible black wave */
+
+    /* Reveal Animation Setup (Right to Left) */
+    transition: clip-path 2.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    clip-path: inset(0 0 0 100%);
+    /* Start hidden from right */
+}
+
+.white-section.revealed::before {
+    clip-path: inset(0 0 0 0);
+    /* Reveal fully */
+}
+
 .white-section .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -2033,4 +2069,191 @@ html {
         padding: 4rem 2rem;
         min-height: 80vh;
     }
+}
+
+/* =========================================
+   WHITE SECTION CONTENT
+   ========================================= */
+.white-section-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center content */
+    gap: 8rem;
+    /* Increased gap */
+    position: relative;
+    z-index: 2;
+
+    /* Full Width Glass Container */
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    /* Combine centering and animation offset */
+
+    padding: 2rem 10vw;
+    /* Reduced vertical padding */
+    /* Horizontal padding to constrain content */
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, 0.08);
+    /* Darker tint */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    /* No corners */
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+
+    /* Animation Initial State */
+    opacity: 0;
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.white-section-content.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    /* Keep centered + reset Y */
+}
+
+.text-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.text-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #111;
+    line-height: 1.2;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+.text-content p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #444;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Removed Glass Frame from here */
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    /* Remove shadow from image as container has it */
+    box-shadow: none;
+}
+
+/* Mobile Responsive for White Content */
+@media (max-width: 900px) {
+    .white-section-content {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .text-content {
+        max-width: 100%;
+    }
+
+    .text-content h2 {
+        font-size: 2rem;
+    }
+}
+
+/* =========================================
+   PAGE TRANSITIONS
+   ========================================= */
+
+/* 1. Content Fade Out/In (Main & Footer) */
+main,
+footer {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+body.page-loaded main,
+body.page-loaded footer {
+    opacity: 1;
+}
+
+/* 2. Header Slide Up/Down */
+.site-header {
+    transform: translateY(-200%);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Smooth easing */
+}
+
+body.page-loaded .site-header {
+    transform: translateY(0);
+}
+
+/* 3. Transition Logo */
+.page-transition-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 99999;
+    /* Top level */
+    pointer-events: none;
+
+    /* Default State (Loading/Transitioning): Visible */
+    opacity: 1;
+    transition: opacity 0.5s ease-out, transform 0.6s ease-out;
+}
+
+.page-transition-logo img {
+    display: block;
+    width: 250px;
+    /* Increased size */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* Loaded State: Hidden */
+body.page-loaded .page-transition-logo {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* 4. White Overlay Background */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 99998;
+    /* Below logo (99999) but above content */
+    pointer-events: none;
+
+    /* Default: Visible */
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+}
+
+body.page-loaded .transition-overlay {
+    opacity: 0;
 }

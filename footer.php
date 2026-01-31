@@ -72,6 +72,16 @@
 <script src="js/mobile-video-fade.js"></script>
 <script src="js/intro-animation.js"></script>
 <script src="js/customization-animation.js"></script>
+    <!-- Transition Overlay (White Background) -->
+    <div class="transition-overlay"></div>
+
+    <!-- Transition Logo -->
+    <div class="page-transition-logo">
+    <img src="assets/logo-couleurs.png" alt="Holoprods Loading" width="100" height="auto">
+</div>
+
+<!-- Page Transitions -->
+<script src="js/page-transitions.js"></script>
 </body>
 
 </html>

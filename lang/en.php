@@ -45,5 +45,9 @@ $lang = array(
     // Customization Section
     'customization_title' => 'Custom Made Personalization',
     'customization_text' => 'We have a partnership with a carpenter and custom magnetic sticker options for a kiosk that perfectly matches your business.',
+
+    // White Section
+    'white_section_title' => "Software Expertise",
+    'white_section_text' => "At Holoprods, we also wear the software editor hat to best prepare the experience we implement for our clients.",
 );
 ?>

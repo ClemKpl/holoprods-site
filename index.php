@@ -136,7 +136,15 @@
     <!-- White Section -->
     <section class="white-section">
         <div class="container">
-            <!-- Contenu à venir -->
+            <div class="white-section-content">
+                <div class="image-content">
+                    <img src="assets/Expertise Logicielle.png" alt="Expertise Logicielle Holoprods">
+                </div>
+                <div class="text-content">
+                    <h2><?php echo $lang['white_section_title']; ?></h2>
+                    <p><?php echo $lang['white_section_text']; ?></p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -147,11 +155,11 @@
             const modelViewer = document.querySelector('model-viewer');
             const mobileModelViewer = document.querySelector('.mobile-model-wrapper model-viewer');
             const hologramOverlay = document.querySelector('.hologram-overlay');
-            
+
             // Sur mobile, cacher la vidéo jusqu'au chargement du modèle
             if (window.innerWidth <= 900 && hologramOverlay) {
                 hologramOverlay.classList.add('waiting-for-model');
-                
+
                 // Écouter le chargement du modèle mobile
                 const targetModel = mobileModelViewer || modelViewer;
                 if (targetModel) {
@@ -163,7 +171,7 @@
                     });
                 }
             }
-            
+
             if (modelViewer) {
                 modelViewer.addEventListener("load", () => {
                     if (!modelViewer.model || !modelViewer.model.materials) return;
@@ -202,6 +210,22 @@
                 });
 
                 observer.observe(textSection);
+            }
+
+            // --- White Section Animation ---
+            const whiteSectionContent = document.querySelector('.white-section-content');
+            if (whiteSectionContent) {
+                const whiteObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            whiteSectionContent.classList.add('visible');
+                            whiteObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.2
+                });
+                whiteObserver.observe(whiteSectionContent);
             }
 
             // --- Scrollytelling Logic (Step 1 vs Step 2) ---
