@@ -2129,22 +2129,12 @@ html {
     margin-bottom: 1.5rem;
     color: #111;
     line-height: 1.2;
-    text-shadow:
-        -1px -1px 0 #fff,
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff,
-        1px 1px 0 #fff;
 }
 
 .text-content p {
     font-size: 1.25rem;
     line-height: 1.6;
     color: #444;
-    text-shadow:
-        -1px -1px 0 #fff,
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff,
-        1px 1px 0 #fff;
 }
 
 .image-content {
@@ -2178,6 +2168,24 @@ html {
 
     .text-content h2 {
         font-size: 2rem;
+    }
+
+    .image-content {
+        width: 100vw;
+        margin-left: -10vw;
+        /* Negate parent padding */
+        margin-right: -10vw;
+        /* Negate parent padding */
+        display: block;
+        /* Ensure block layout */
+    }
+
+    .image-content img {
+        width: 100%;
+        max-width: none;
+        /* Allow full width */
+        border-radius: 0;
+        display: block;
     }
 }
 
