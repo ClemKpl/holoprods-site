@@ -1115,17 +1115,41 @@ html {
     }
 
     /* Hide video on mobile until model is loaded */
-    /* Hide video on mobile until model is loaded - DISABLED */
     .hologram-overlay.waiting-for-model {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transition: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 1.2s ease-in-out !important;
+        /* Transition plus longue et douce */
     }
 
-    /* Smooth fade-in when video appears - DISABLED */
+    /* Smooth fade-in when video appears */
     .hologram-overlay {
-        animation: none !important;
-        opacity: 1 !important;
+        animation: videoFadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes videoFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mobile Video Entrance Animation */
+    @keyframes mobileVideoReveal {
+        0% {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
     }
 
     .hologram-frame {
@@ -1133,17 +1157,16 @@ html {
         /* Reduced video border */
         clip-path: inset(0 0 0% 0) !important;
 
-        /* Animation properties - DISABLED */
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        transition: none !important;
-    }
-
-    /* Prevent Step 3 active from hiding it on mobile if triggered */
-    .sticky-scroll-container.step-3-active .hologram-frame {
-        opacity: 1 !important;
-        transform: none !important;
+        /* Animation properties */
+        opacity: 0;
+        /* Start hidden (not important so animation can override) */
+        transform: scale(0.8);
+        /* Start scaled down */
+        animation: mobileVideoReveal 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+        animation-fill-mode: both !important;
+        /* Ensure initial state is applied before delay */
+        animation-delay: 1s !important;
+        /* Video appears 1s after page load */
     }
 
     /* Model wrapper hidden on mobile - no Step 2 active state needed */
