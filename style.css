@@ -1060,8 +1060,8 @@ html {
         left: auto;
         width: 100%;
         max-width: 500px;
-        text-align: center;
-        /* Centered Text */
+        text-align: left;
+        /* Left Aligned Text */
         align-self: center;
         /* Centered Block */
         margin-left: auto;
