@@ -1988,6 +1988,8 @@ html {
         font-size: 1.125rem;
         text-align: center;
         /* Centrer le texte */
+        padding: 0 1rem;
+        /* Prevent text touching edges */
     }
 }
 
@@ -2163,6 +2165,8 @@ html {
         flex-direction: column;
         gap: 3rem;
         text-align: center;
+        padding: 2rem 5vw;
+        /* More important padding on mobile */
     }
 
     .text-content {
