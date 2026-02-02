@@ -161,7 +161,8 @@
             const mobileModelViewer = document.querySelector('.mobile-model-wrapper model-viewer');
             const hologramOverlay = document.querySelector('.hologram-overlay');
 
-            // Sur mobile, cacher la vidéo jusqu'au chargement du modèle
+            // Sur mobile, logic removed to ensure video always appears
+            /*
             if (window.innerWidth <= 900 && hologramOverlay) {
                 hologramOverlay.classList.add('waiting-for-model');
 
@@ -176,6 +177,7 @@
                     });
                 }
             }
+            */
 
             if (modelViewer) {
                 modelViewer.addEventListener("load", () => {
@@ -275,7 +277,7 @@
                             // If boundingClientRect.y is positive, it means the element is below viewport (we are above it).
                             // Wait, if we are in Step 1, Step 2 is BELOW us -> y is positive.
                             // If we are past Step 2, Step 2 is ABOVE us -> y is negative.
-                            
+
                             if (entry.boundingClientRect.y > 0) {
                                 // Back in Step 1
                                 container.classList.remove('step-2-active');
