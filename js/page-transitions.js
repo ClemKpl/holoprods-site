@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
+    // Mark site as visited in this session
+    sessionStorage.setItem('intro_shown', 'true');
+
     // 1. Enter Animation: Add class after a brief delay
     setTimeout(() => {
         body.classList.add('page-loaded');
@@ -29,15 +32,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isInternal = href.startsWith(window.location.origin) || !href.startsWith('http');
 
                 if (isInternal) {
-                    e.preventDefault();
+                    // Check if target is homepage
+                    // Create a dummy anchor to parse the full href
+                    const urlParser = document.createElement('a');
+                    urlParser.href = href;
+                    const path = urlParser.pathname;
 
-                    // Trigger Exit Animation
-                    body.classList.remove('page-loaded');
+                    const isHomePageTarget = path === '/' ||
+                        path.endsWith('/index.php') ||
+                        path.endsWith('/');
 
-                    // Wait for animation to finish before navigating
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 600); // Matches CSS transition duration (0.6s)
+                    if (isHomePageTarget) {
+                        // Only animate when going TO the homepage
+                        e.preventDefault();
+
+                        // Trigger Exit Animation
+                        body.classList.remove('page-loaded');
+
+                        // Wait for animation to finish before navigating
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 600);
+                    }
+                    // For all other pages, do NOTHING. Let the browser navigate instantly.
                 }
             }
         });

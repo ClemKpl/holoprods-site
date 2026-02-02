@@ -18,13 +18,22 @@
     <link rel="preload" as="image" href="assets/Section-Hero-Index.png">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="style.css?v=<?php echo time() + 1; ?>">
 
     <!-- Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 
-<body class="<?php echo isset($body_class) ? $body_class : ''; ?>">
+<?php
+// Determine if we are on the homepage
+$current_script = basename($_SERVER['PHP_SELF']);
+$is_homepage = ($current_script === 'index.php') || ($current_script === '');
+
+// OPT-IN Animation: Only add 'animate-entry' if on Homepage
+$extra_body_classes = $is_homepage ? 'animate-entry' : '';
+?>
+
+<body class="<?php echo isset($body_class) ? $body_class . ' ' : ''; ?><?php echo $extra_body_classes; ?>">
 
 
 

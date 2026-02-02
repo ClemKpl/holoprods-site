@@ -2282,25 +2282,37 @@ html {
    ========================================= */
 
 /* 1. Content Fade Out/In (Main & Footer) */
+/* DEFAULT: Visible (Fail-safe) */
 main,
 footer {
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.6s ease-in-out;
 }
 
-body.page-loaded main,
-body.page-loaded footer {
+/* OPT-IN: Hidden only if explicitly animating entry */
+body.animate-entry main,
+body.animate-entry footer {
+    opacity: 0;
+}
+
+/* RESTORE: Visible once loaded */
+body.animate-entry.page-loaded main,
+body.animate-entry.page-loaded footer {
     opacity: 1;
 }
 
 /* 2. Header Slide Up/Down */
 .site-header {
-    transform: translateY(-200%);
+    transform: translateY(0);
+    /* Default visible */
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    /* Smooth easing */
 }
 
-body.page-loaded .site-header {
+body.animate-entry .site-header {
+    transform: translateY(-200%);
+}
+
+body.animate-entry.page-loaded .site-header {
     transform: translateY(0);
 }
 
@@ -2311,24 +2323,18 @@ body.page-loaded .site-header {
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
     z-index: 99999;
-    /* Top level */
     pointer-events: none;
-
-    /* Default State (Loading/Transitioning): Visible */
-    opacity: 1;
+    opacity: 0;
+    /* Default hidden */
     transition: opacity 0.5s ease-out, transform 0.6s ease-out;
 }
 
-.page-transition-logo img {
-    display: block;
-    width: 250px;
-    /* Increased size */
-    height: auto;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+body.animate-entry .page-transition-logo {
+    opacity: 1;
+    /* Show only if animating */
 }
 
-/* Loaded State: Hidden */
-body.page-loaded .page-transition-logo {
+body.animate-entry.page-loaded .page-transition-logo {
     opacity: 0;
     transform: translate(-50%, -50%) scale(1.1);
 }
@@ -2342,14 +2348,19 @@ body.page-loaded .page-transition-logo {
     height: 100%;
     background-color: #ffffff;
     z-index: 99998;
-    /* Below logo (99999) but above content */
     pointer-events: none;
-
-    /* Default: Visible */
-    opacity: 1;
+    opacity: 0;
+    /* Default hidden */
     transition: opacity 0.6s ease-out;
 }
 
-body.page-loaded .transition-overlay {
+body.animate-entry .transition-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    /* Block clicks only when animating */
+}
+
+body.animate-entry.page-loaded .transition-overlay {
     opacity: 0;
+    pointer-events: none;
 }
