@@ -2092,7 +2092,8 @@ html {
     transform: translateX(-50%) translateY(30px);
     /* Combine centering and animation offset */
 
-    padding: 2rem 10vw;
+    padding: 0.66vw 10vw;
+    /* 2% of video height (approx 33vw) */
     /* Reduced vertical padding */
     /* Horizontal padding to constrain content */
     box-sizing: border-box;

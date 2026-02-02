@@ -1,24 +1,24 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
     <!-- Group 1: Main organic white strokes with softer curves -->
-    <g opacity="0.4">
+    <g>
          <!-- Core stroke -->
-        <path d="M-50 500 C 350 200, 950 800, 1970 450" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M-50 500 C 350 200, 950 800, 1970 450" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"/>
         
         <!-- Slight offset 1 -->
-        <path d="M-50 502 C 355 205, 945 795, 1970 452" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+        <path d="M-50 502 C 355 205, 945 795, 1970 452" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none"/>
 
         <!-- Slight offset 2 -->
-        <path d="M-50 499 C 345 195, 955 805, 1970 449" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+        <path d="M-50 499 C 345 195, 955 805, 1970 449" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none"/>
     </g>
 
     <!-- Group 2: Secondary flowing wave -->
-    <g opacity="0.3">
-         <path d="M-50 530 C 350 230, 950 830, 1970 480" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <g>
+         <path d="M-50 530 C 350 230, 950 830, 1970 480" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" fill="none"/>
     </g>
     
     <!-- Group 3: Artistic sketch details -->
-     <g opacity="0.2">
+     <g>
         <!-- Diverging line -->
-        <path d="M-50 501 C 360 210, 940 790, 1970 451" stroke="white" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <path d="M-50 501 C 360 210, 940 790, 1970 451" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" fill="none"/>
     </g>
 </svg>
