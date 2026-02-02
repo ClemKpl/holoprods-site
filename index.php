@@ -94,6 +94,11 @@
             <div class="scroll-step step-2">
                 <!-- Empty, lets model take center stage -->
             </div>
+
+            <!-- Step 3: Buffer for Video Fade Out -->
+            <div class="scroll-step step-3">
+                <!-- Buffer -->
+            </div>
         </div>
     </section>
 
@@ -266,22 +271,45 @@
                             });
 
                         } else {
-                            // Back in Step 1
-                            container.classList.remove('step-2-active');
+                            // Only reset if we are ABOVE the section (scrolling back up)
+                            // If boundingClientRect.y is positive, it means the element is below viewport (we are above it).
+                            // Wait, if we are in Step 1, Step 2 is BELOW us -> y is positive.
+                            // If we are past Step 2, Step 2 is ABOVE us -> y is negative.
+                            
+                            if (entry.boundingClientRect.y > 0) {
+                                // Back in Step 1
+                                container.classList.remove('step-2-active');
 
-                            // UNLOCK Camera
-                            modelViewer.minCameraOrbit = "auto";
-                            modelViewer.maxCameraOrbit = "auto";
+                                // UNLOCK Camera
+                                modelViewer.minCameraOrbit = "auto";
+                                modelViewer.maxCameraOrbit = "auto";
 
-                            // Interactive, Offset, Auto-Rotate
-                            modelViewer.cameraOrbit = "215deg 80deg 105%";
-                            modelViewer.autoRotate = true;
-                            modelViewer.cameraControls = true;
+                                // Interactive, Offset, Auto-Rotate
+                                modelViewer.cameraOrbit = "215deg 80deg 105%";
+                                modelViewer.autoRotate = true;
+                                modelViewer.cameraControls = true;
+                            }
+                            // Else (y < 0): We scrolled past it. Keep Step 2 state active.
                         }
                     });
                 }, { threshold: 0.2 }); // Trigger when Step 2 is 20% visible (earlier)
 
                 stepObserver.observe(step2);
+
+                // --- Step 3: Video Fade Out Buffer ---
+                const step3 = document.querySelector('.step-3');
+                if (step3) {
+                    const step3Observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                container.classList.add('step-3-active');
+                            } else {
+                                container.classList.remove('step-3-active');
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    step3Observer.observe(step3);
+                }
             }
         });
     </script>

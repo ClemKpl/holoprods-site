@@ -645,8 +645,8 @@ html {
 .sticky-scroll-container {
     position: relative;
     width: 100%;
-    height: 200vh;
-    /* 2 Steps */
+    height: 300vh;
+    /* 3 Steps: 100 + 150 + 50 */
     background-color: #ffffff;
     z-index: 10;
 }
@@ -662,7 +662,7 @@ html {
     background: linear-gradient(to bottom,
             transparent 0%,
             transparent 70%,
-            #2a2a2a 100%);
+            #4a4a4a 100%);
     pointer-events: none;
     z-index: 100;
     /* Above all content including borne */
@@ -822,6 +822,16 @@ html {
     align-items: center;
     position: relative;
     pointer-events: none;
+}
+
+.scroll-step.step-2 {
+    height: 150vh;
+    /* Extended duration */
+}
+
+.scroll-step.step-3 {
+    height: 50vh;
+    /* Buffer to fade out video */
 }
 
 .step-1 .showcase-layout {
@@ -1231,6 +1241,17 @@ html {
 
     /* DELAY: Wait for model to settle (0.8s) + a beat */
     transition-delay: 0.9s;
+}
+
+/* HIDE Video when entering Step 3 (Buffer) */
+.sticky-scroll-container.step-3-active .hologram-frame {
+    opacity: 0 !important;
+    pointer-events: none;
+    transform: translateY(-20px) scale(0.95);
+    /* Slight exit animation */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition-delay: 0s;
+    /* Immediate exit */
 }
 
 .hologram-frame iframe {
@@ -1787,7 +1808,7 @@ html {
 
 /* Dark Section Background */
 .dark-section {
-    background-color: #2a2a2a;
+    background-color: #4a4a4a;
     padding: 10rem 2rem;
     min-height: 50vh;
     position: relative;
@@ -1805,7 +1826,7 @@ html {
     left: 0;
     width: 100%;
     height: 30vh;
-    background: linear-gradient(to bottom, rgba(42, 42, 42, 0) 0%, #2a2a2a 100%);
+    background: linear-gradient(to bottom, rgba(74, 74, 74, 0) 0%, #4a4a4a 100%);
     transform: translateY(-99%);
     pointer-events: none;
     z-index: -1;
@@ -2000,7 +2021,7 @@ html {
     min-height: 20vh;
     /* Réduit de 40vh à 20vh */
     background: linear-gradient(to bottom,
-            #2a2a2a 0%,
+            #4a4a4a 0%,
             /* Dark gray from dark-section */
             #8a8a8a 50%,
             /* Medium gray */
